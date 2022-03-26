@@ -9,29 +9,29 @@ class UsersRepository{
     }
 
     async findAll() {
-        const users = await db.query(`
+        const rows = await db.query(`
             SELECT * FROM users
         `);
 
-        return users;
+        return rows;
     }
 
     async findByEmail(email) {
-        const [user] = await db.query(`
+        const [row] = await db.query(`
             SELECT * FROM users
             WHERE users.email = ?
         `, [email]);
         
-        return user;
+        return row;
     }
 
     async findById(id) {
-        const [user] = await db.query(`
+        const [row] = await db.query(`
             SELECT * FROM users
             WHERE users.id = ?
         `, [id]);
 
-        return user;
+        return row;
     }
 
     async delete(id) {
@@ -40,7 +40,7 @@ class UsersRepository{
             WHERE user_id = ?
         `, [id]);
 
-        const [userDeleted] = await db.query(`
+        const [rowDeleted] = await db.query(`
             SELECT * FROM users
                 WHERE id = ?
             `, [id]);
@@ -50,7 +50,7 @@ class UsersRepository{
             WHERE id = ?
         `, [id]);
         
-        return userDeleted;
+        return rowDeleted;
     }
 
     async update(id, { name, email, password}){

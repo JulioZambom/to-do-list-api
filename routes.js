@@ -1,15 +1,21 @@
 const { Router } = require('express');
-const UserController = require('./src/app/controllers/UserController');
+const AuthMiddleware = require('./src/app/middlewares/AuthMiddleware');
+const AuthController = require('./src/app/controllers/AuthController')
+const UsersController = require('./src/app/controllers/UsersController');
 const NotesController = require('./src/app/controllers/NotesController');
 
 const router = Router();
 
+//Auth routes
+router.get('/auth', AuthMiddleware, AuthController.auth);
+router.post('/auth/login', AuthController.login);
+
 //User routes
-router.get('/users', UserController.index);
-router.get('/users/:id', UserController.find);
-router.post('/users', UserController.store);
-router.delete('/users/:id', UserController.delete);
-router.put('/users/:id', UserController.update);
+router.get('/users', UsersController.index);
+router.get('/users/:id', UsersController.find);
+router.post('/users', UsersController.store);
+router.delete('/users/:id', UsersController.delete);
+router.put('/users/:id', UsersController.update);
 
 //Notes routes
 router.get('/notes', NotesController.index);
