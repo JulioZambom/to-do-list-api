@@ -2,9 +2,9 @@ const mysql = require('mysql');
 
 const db = mysql.createPool({
     host: 'sql10.freemysqlhosting.net',
-    user: 'sql10480893',
-    password: 'A8w8mQIvF1',
-    database: 'sql10480893'
+    user: 'sql10481403',
+    password: 'lhYMMtqhE7',
+    database: 'sql10481403'
 });
 
 exports.query = async (query, values = []) => {
